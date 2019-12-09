@@ -21,6 +21,7 @@ const App = () => {
   return (
     <div className="contenedor">
       <Quote phrase={ quote}/>
+      <button onClick={ getQuotes }>get new quote</button>
     </div>
   );
 };
