@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Quote from './components/Quote';
 
 
 
@@ -7,22 +8,19 @@ const App = () => {
 
   const [ quote, setQuote ] = useState({});
 
-
+  const getQuotes = async() => {
+    const res = await axios.get('https://breaking-bad-quotes.herokuapp.com/v1/quotes'); 
+    setQuote(res.data[0]);
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      // You can await here
-      const response = await axios.get('https://breaking-bad-quotes.herokuapp.com/v1/quotes');
-      // ...
-      console.log(response.data[0].quote);
-    }
-    fetchData();
-  }, [quote]);
+    getQuotes();
+  }, []);
   
 
   return (
-    <div>
-      
+    <div className="contenedor">
+      <Quote phrase={ quote}/>
     </div>
   );
 };
